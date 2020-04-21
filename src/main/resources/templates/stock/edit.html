@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>编辑商品</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script>document.getElementsByTagName("html")[0].className += " js";</script>
+    <script>
+        if ('CSS' in window && CSS.supports('color', 'var(--color-var)')) {
+            document.write('<link rel="stylesheet" href="../../static/css/style.css">');
+        } else {
+            document.write('<link rel="stylesheet" href="../../static/css/style-fallback.css">');
+        }
+    </script>
+    <noscript>
+        <link rel="stylesheet" href="../../static/css/style-fallback.css">
+    </noscript>
+</head>
+<body>
+<div class="container max-width-lg padding-y-xl">
+    <h1 class="text-md text-center">该商品（<span id="sid" class="text-bold color-error" th:text="${sid}"></span>）一共涉及到
+        <span class="text-bold color-error" th:text="${number}">0</span> 条记录</h1>
+
+    <table class="prop-table width-100% max-width-xs margin-auto" aria-label="Property Table Example">
+        <tbody class="prop-table__body">
+
+        <tr class="prop-table__row">
+            <th class="prop-table__cell prop-table__cell--th">
+                <div class="input-group">
+                    <div class="input-group__tag">商品名称</div>
+                    <label for="name"></label>
+                    <input class="form-control flex-grow" type="text" name="name" id="name" th:value="${stock.name}">
+                    <button class="btn btn--primary" onclick="location.reload()">重置</button>
+                </div>
+            </th>
+        </tr>
+
+        <tr class="prop-table__row">
+            <th class="prop-table__cell prop-table__cell--th">
+                <div class="input-group">
+                    <div class="input-group__tag">商品数量</div>
+                    <label for="number"></label>
+                    <input class="form-control flex-grow" type="number" name="number" id="number"
+                           th:value="${stock.number}">
+                    <button class="btn btn--primary" onclick="location.reload()">重置</button>
+                </div>
+            </th>
+        </tr>
+
+        <tr class="prop-table__row">
+            <th class="prop-table__cell prop-table__cell--th">
+                <div class="input-group">
+                    <div class="input-group__tag">进货价格</div>
+                    <label for="buyPrice"></label>
+                    <input class="form-control flex-grow" type="number" name="buyPrice" id="buyPrice"
+                           th:value="${stock.buyPrice}">
+                    <button class="btn btn--primary" onclick="location.reload()">重置</button>
+                </div>
+            </th>
+        </tr>
+
+        <tr class="prop-table__row">
+            <th class="prop-table__cell prop-table__cell--th">
+                <div class="input-group">
+                    <div class="input-group__tag">参考价格</div>
+                    <label for="salePrice"></label>
+                    <input class="form-control flex-grow" type="number" name="salePrice" id="salePrice"
+                           th:value="${stock.referencePrice}">
+                    <button class="btn btn--primary" onclick="location.reload()">重置</button>
+                </div>
+            </th>
+        </tr>
+        </tbody>
+    </table>
+    <div class="container max-width-xs padding-y-sm text-center">
+        <input class="btn btn--primary" type="button" value="提交更改" onclick="editStock()">
+        <input class="btn btn--accent" type="button" value="删除该商品" onclick="deleteStock()">
+    </div>
+</div>
+<script src="../../static/js/stock.js"></script>
+<script src="../../static/js/scripts.js"></script>
+</body>
+</html>

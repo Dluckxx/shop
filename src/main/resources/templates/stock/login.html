@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>身份验证</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script>document.getElementsByTagName("html")[0].className += " js";</script>
+    <script>
+        if ('CSS' in window && CSS.supports('color', 'var(--color-var)')) {
+            document.write('<link rel="stylesheet" href="../../static/css/style.css">');
+        } else {
+            document.write('<link rel="stylesheet" href="../../static/css/style-fallback.css">');
+        }
+    </script>
+    <noscript>
+        <link rel="stylesheet" href="../../static/css/style-fallback.css">
+    </noscript>
+</head>
+<body>
+<div class="container max-width-md margin-top-lg">
+    <form class="login-form">
+        <div class="text-component text-center margin-bottom-sm">
+            <h1>身份验证</h1>
+            <p th:text="${msg}">在编辑商品之前，我们需要确认你的权限</p>
+            <p th:text="'商品ID：' + ${sid}">id</p>
+        </div>
+
+        <div class="margin-bottom-sm">
+            <label class="form-label margin-bottom-xxxs" for="eid">员工ID</label>
+            <input class="form-control width-100%" type="number" name="eid" id="eid" placeholder="请输入你的ID">
+        </div>
+
+        <div class="margin-bottom-sm">
+            <div class="flex justify-between margin-bottom-xxxs">
+                <label class="form-label" for="password">密码</label>
+            </div>
+
+            <input class="form-control width-100%" type="password" name="password" id="password" placeholder="请输入你的密码">
+        </div>
+
+        <div class="margin-bottom-sm">
+            <input class="btn btn--primary btn--md width-100%" type="button" th:onclick="|edit(${sid})|" value="Login">
+        </div>
+    </form>
+</div>
+<script src="../../static/js/stock.js"></script>
+<script src="../../static/js/scripts.js"></script>
+</body>
+</html>

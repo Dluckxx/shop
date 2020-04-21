@@ -1,0 +1,18 @@
+server:
+  port: 8888
+spring:
+  thymeleaf:
+    prefix: classpath:templates/
+    suffix: .html
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+#    url: jdbc:mysql://localhost:3306/shop?serverTimezone=Asia/Shanghai
+    url: jdbc:mysql://dluck.synology.me:3306/shop?serverTimezone=Asia/Shanghai
+    username: root
+    password: dts19990628
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: false
+  mvc:
+    static-path-pattern: /static/**

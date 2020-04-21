@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>薪水</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script>document.getElementsByTagName("html")[0].className += " js";</script>
+    <script>
+        if ('CSS' in window && CSS.supports('color', 'var(--color-var)')) {
+            document.write('<link rel="stylesheet" href="../../static/css/style.css">');
+        } else {
+            document.write('<link rel="stylesheet" href="../../static/css/style-fallback.css">');
+        }
+    </script>
+    <noscript>
+        <link rel="stylesheet" href="../../static/css/style-fallback.css">
+    </noscript>
+    <style>
+        #stock-table tr th, td {
+            padding: .65em;
+            border-bottom: 1px solid #ddd;
+            border-top: 1px solid #ddd;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<header class="main-header js-main-header ">
+    <div class="container max-width-lg">
+        <div class="main-header__layout">
+            <div class="main-header__logo">
+                <a href="/">
+                    <svg width="130" height="32" viewBox="0 0 130 32"><title>Go to homepage</title>
+                        <circle fill="var(--color-primary)" cx="16" cy="16" r="16"/>
+                        <rect fill="var(--color-contrast-higher)" x="41" y="11" width="89" height="10"/>
+                    </svg>
+                </a>
+            </div>
+
+            <button class="btn btn--subtle main-header__nav-trigger js-main-header__nav-trigger"
+                    aria-label="Toggle menu" aria-expanded="false" aria-controls="main-header-nav">
+                <i class="main-header__nav-trigger-icon" aria-hidden="true"></i>
+                <span>Menu</span>
+            </button>
+
+            <nav class="main-header__nav js-main-header__nav" id="main-header-nav"
+                 aria-labelledby="main-header-nav-label" role="navigation">
+                <div id="main-header-nav-label" class="main-header__nav-label">Main menu</div>
+                <ul class="main-header__nav-list">
+                    <li class="main-header__nav-item"><a href="/" class="main-header__nav-link">值班表</a></li>
+                    <li class="main-header__nav-item"><a href="/stock" class="main-header__nav-link">库存管理</a></li>
+                    <li class="main-header__nav-item"><a href="/income" class="main-header__nav-link">收入</a></li>
+                    <li class="main-header__nav-item"><a href="/expenditure" class="main-header__nav-link">支出</a></li>
+                    <li class="main-header__nav-item"><a href="/salary" class="main-header__nav-link"
+                                                         aria-current="page">薪水</a></li>
+                    <li class="main-header__nav-item"><a href="/report" class="main-header__nav-link">报表</a></li>
+                    <li class="main-header__nav-item main-header__nav-divider" aria-hidden="true"></li>
+                    <li class="main-header__nav-item">
+                        <a href="#" class="btn btn--primary" th:text="${nowShift}">无人</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</header>
+<div class="container max-width-xxxxs text-center">
+    <h1 class="text-lg color-primary" th:text="${date}">1999-99-99</h1>
+</div>
+<div class="table js-table max-width-lg container">
+    <div class="table__inner js-table__inner">
+        <table aria-label="Table Example">
+            <thead class="table__header">
+            <tr>
+                <th aria-hidden="true">ID</th>
+                <th scope="col">姓名</th>
+                <th scope="col">职务</th>
+                <th scope="col">值班</th>
+                <th scope="col">提成</th>
+                <th scope="col" class="table__cell--right">合计</th>
+            </tr>
+            </thead>
+
+            <tbody class="table__body js-table__body">
+            <tr th:each="salary, salaryStat:${salaryList}">
+                <td aria-hidden="true" style="width: var(--table-cell-width-xs)" th:text="${salary.id}">201703880</td>
+                <td th:text="${salary.name}">Dluck</td>
+                <td th:text="${salary.job}">boss</td>
+                <td th:text="${salary.shift_salary}">xxx</td>
+                <td th:text="${salary.income_salary}">xxx</td>
+                <td class="table__cell--right" th:text="${salary.shift_salary + salary.income_salary}">¥320,000</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <button aria-hidden="true" class="table__scrolling-indicator js-table__scrolling-indicator">
+            <svg class="icon" viewBox="0 0 24 24">
+                <g stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" stroke="currentColor">
+                    <polyline fill="none" stroke-miterlimit="10" points="8,1 16,12 8,23 "
+                              stroke-linecap="butt"></polyline>
+                </g>
+            </svg>
+        </button>
+    </div>
+</div>
+<div class="container max-width-xs text-center">
+    <div class="inline-block margin-auto">
+        <label class="form-label margin-bottom-xxs" for="year">年份:</label>
+        <div class="number-input number-input--v1 js-number-input" style="width: 8em">
+            <input class="form-control js-number-input__value" type="number" name="qtyInput" id="year" min="2019"
+                   max="2022"
+                   step="1" value="2019">
+
+            <div class="number-input__btns" aria-hidden="true">
+                <button class="reset number-input__btn number-input__btn--plus js-number-input__btn">
+                    <svg class="icon" viewBox="0 0 16 16">
+                        <g>
+                            <polygon points="13,11 8,5 3,11 "></polygon>
+                        </g>
+                    </svg>
+                </button>
+
+                <button class="reset number-input__btn number-input__btn--minus js-number-input__btn">
+                    <svg class="icon" viewBox="0 0 16 16">
+                        <g>
+                            <polygon points="3,5 8,11 13,5 "></polygon>
+                        </g>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="inline-block margin-auto">
+        <label class="form-label margin-bottom-xxs" for="month">月份:</label>
+        <div class="number-input number-input--v1 js-number-input" style="width: 6em">
+            <input class="form-control js-number-input__value" type="number" name="qtyInput" id="month" min="1" max="12"
+                   step="1" value="1">
+
+            <div class="number-input__btns" aria-hidden="true">
+                <button class="reset number-input__btn number-input__btn--plus js-number-input__btn">
+                    <svg class="icon" viewBox="0 0 16 16">
+                        <g>
+                            <polygon points="13,11 8,5 3,11 "></polygon>
+                        </g>
+                    </svg>
+                </button>
+
+                <button class="reset number-input__btn number-input__btn--minus js-number-input__btn">
+                    <svg class="icon" viewBox="0 0 16 16">
+                        <g>
+                            <polygon points="3,5 8,11 13,5 "></polygon>
+                        </g>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="inline-block margin-auto">
+        <input class="btn btn--primary btn--md" type="button" value="查询" onclick="search()">
+    </div>
+    <div><h1 class="text-sm color-primary">该页面仅供参考，均以实际账目为准</h1></div>
+</div>
+<script src="../../static/js/salary.js"></script>
+<script src="../../static/js/scripts.js"></script>
+</body>
+</html>
