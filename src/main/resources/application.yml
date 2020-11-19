@@ -4,9 +4,9 @@ spring:
     suffix: .html
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://dluck.synology.me:3306/shop?serverTimezone=Asia/Shanghai
-    username: shop
-    password: 27HEZ6xWAnZiHRt4
+    url: jdbc:mysql://example:3306/shop?serverTimezone=Asia/Shanghai
+    username: username
+    password: password
   jpa:
     hibernate:
       ddl-auto: none
